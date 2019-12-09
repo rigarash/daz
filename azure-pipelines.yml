@@ -6,35 +6,42 @@
 trigger:
 - azure-pipelines
 
-pool:
-  vmImage: 'windows-2019'
-strategy:
-  matrix:
-    Python36:
-      python.version: '3.6'
-    Python37:
-      python.version: '3.7'
-    Python38:
-      python.version: '3.8'
-
 jobs:
 - job: build
+  pool:
+    vmImage: 'windows-2019'
+  strategy:
+    matrix:
+      Python36:
+        python.version: '3.6'
+      Python37:
+        python.version: '3.7'
+      Python38:
+        python.version: '3.8'
   steps:
   - task: UsePythonVersion@0
     inputs:
       versionSpec: '$(python.version)'
     displayName: 'Use Python $(python.version)'
-
   - script: |
       pip install --upgrade pip setuptools wheel
       pip install numpy
     displayName: 'Install dependencies'
-
   - script: |
       python setup.py bdist_wheel
     displayName: 'build wheel'
 
 - job: test
+  pool:
+    vmImage: 'windows-2019'
+  strategy:
+    matrix:
+      Python36:
+        python.version: '3.6'
+      Python37:
+        python.version: '3.7'
+      Python38:
+        python.version: '3.8'
   steps:
   - script: |
       pip install .
