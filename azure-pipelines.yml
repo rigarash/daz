@@ -25,7 +25,6 @@ jobs:
     displayName: 'Use Python $(python.version)'
   - script: |
       pip install --upgrade pip setuptools wheel
-      pip install numpy
     displayName: 'Install dependencies'
   - script: |
       python setup.py bdist_wheel
@@ -44,6 +43,7 @@ jobs:
         python.version: '3.8'
   steps:
   - script: |
+      pip install numpy
       pip install .
       pip install pytest pytest-azurepipelines
       pytest
