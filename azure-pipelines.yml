@@ -24,7 +24,7 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
-    python -m pip install --upgrade pip setuptools wheel
+    pip install --upgrade pip setuptools wheel
     pip install numpy
   displayName: 'Install dependencies'
 
@@ -32,8 +32,9 @@ steps:
     python setup.py bdist_wheel
   displayName: 'build wheel'
 
+steps:
 - script: |
-    pip install daz
+    pip install .
     pip install pytest pytest-azurepipelines
     pytest
   displayName: 'pytest'
