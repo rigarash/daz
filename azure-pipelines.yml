@@ -37,6 +37,6 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        pip install pytest pytest-azurepipelines
+        pip install daz pytest pytest-azurepipelines
         pytest
     displayName: 'pytest'
