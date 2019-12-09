@@ -29,7 +29,7 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    python setyp.py bdist_wheel
+    python setup.py bdist_wheel
   displayName: 'build wheel'
 
 - script: |
