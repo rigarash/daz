@@ -29,22 +29,12 @@ jobs:
   - script: |
       python setup.py bdist_wheel
     displayName: 'build wheel'
-
-- job: test
-  pool:
-    vmImage: 'windows-2019'
-  strategy:
-    matrix:
-      Python36:
-        python.version: '3.6'
-      Python37:
-        python.version: '3.7'
-      Python38:
-        python.version: '3.8'
-  steps:
-  - script: |
-      pip install numpy
-      pip install .
-      pip install pytest pytest-azurepipelines
-      pytest
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        pip install numpy
+        pip install .
+        pip install pytest pytest-azurepipelines
+        pytest
     displayName: 'pytest'
