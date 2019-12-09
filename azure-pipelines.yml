@@ -17,24 +17,27 @@ strategy:
     Python38:
       python.version: '3.8'
 
-steps:
-- task: UsePythonVersion@0
-  inputs:
-    versionSpec: '$(python.version)'
-  displayName: 'Use Python $(python.version)'
+jobs:
+  - job: build
+    steps:
+    - task: UsePythonVersion@0
+      inputs:
+        versionSpec: '$(python.version)'
+      displayName: 'Use Python $(python.version)'
 
-- script: |
-    pip install --upgrade pip setuptools wheel
-    pip install numpy
-  displayName: 'Install dependencies'
+    - script: |
+        pip install --upgrade pip setuptools wheel
+        pip install numpy
+      displayName: 'Install dependencies'
 
-- script: |
-    python setup.py bdist_wheel
-  displayName: 'build wheel'
+    - script: |
+        python setup.py bdist_wheel
+      displayName: 'build wheel'
 
-steps:
-- script: |
-    pip install .
-    pip install pytest pytest-azurepipelines
-    pytest
-  displayName: 'pytest'
+  - job: test
+    steps:
+    - script: |
+        pip install .
+        pip install pytest pytest-azurepipelines
+        pytest
+      displayName: 'pytest'
