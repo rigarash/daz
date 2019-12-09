@@ -29,7 +29,7 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    python setup.py bdist_wheel install
+    python setup.py bdist_wheel install --install-lib
     pip install pytest pytest-azurepipelines
     pytest
   displayName: 'pytest'
