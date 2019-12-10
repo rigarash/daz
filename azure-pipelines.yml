@@ -31,7 +31,7 @@ jobs:
     displayName: 'build wheel'
   - script: |
       pip install numpy
-      pip install .
+      pip install dist/*.whl
     displayName: 'intall test dependency'
     #- task: TwineAuthenticate@1
     #inputs:
