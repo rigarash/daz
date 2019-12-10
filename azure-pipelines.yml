@@ -37,12 +37,13 @@ jobs:
     #inputs:
       #targetPath: '$(Pipeline.Workspace)' 
       #artifactName: # 'drop'
+    displayName: 'Publish build artifacts'
   - task: TwineAuthenticate@0
-    displayName: Configure twine authentication
     #inputs:
       #artifactFeeds: $(artifactFeed)
-  - script: twine upload -r rigarash dist/*
-    displayName: Publish artifacts
+    displayName: 'Configure twine authentication'
+  - script: twine upload -r rigarash --config-file $(PYPIRC_PATH) dist/*
+    displayName: 'Publish project artifacts'
   - task: PowerShell@2
     inputs:
       targetType: 'inline'
