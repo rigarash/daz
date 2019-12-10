@@ -39,8 +39,8 @@ jobs:
       #artifactName: # 'drop'
     displayName: 'Publish build artifacts'
   - task: TwineAuthenticate@0
-    #inputs:
-      #artifactFeeds: $(artifactFeed)
+    inputs:
+      artifactFeeds: rigarash
     displayName: 'Configure twine authentication'
   - script: twine upload -r rigarash --config-file $(PYPIRC_PATH) dist/*
     displayName: 'Publish project artifacts'
