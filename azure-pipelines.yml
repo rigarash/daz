@@ -26,16 +26,14 @@ jobs:
   - script: |
       pip install --upgrade pip setuptools wheel twine keyring artifacts-keyring
     displayName: 'Install dependencies'
-  - script: |
-      python setup.py bdist_wheel
-    displayName: 'build wheel'
   - task: PowerShell@2
     inputs:
       targetType: 'inline'
       script: |
+        python setup.py bdist_wheel
         pip install numpy
-        pip install dist/*.whl
-    displayName: 'intall test dependency'
+        pip install .
+    displayName: 'build wheel'
     #- task: TwineAuthenticate@1
     #inputs:
     #  artifactFeeds: 'rigarash'
