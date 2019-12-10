@@ -24,7 +24,7 @@ jobs:
       versionSpec: '$(python.version)'
     displayName: 'Use Python $(python.version)'
   - script: |
-      pip install --upgrade pip setuptools wheel twine
+      pip install --upgrade pip setuptools wheel twine keyring artifacts-keyring
     displayName: 'Install dependencies'
   - script: |
       python setup.py bdist_wheel
