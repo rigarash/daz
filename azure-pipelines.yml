@@ -29,9 +29,12 @@ jobs:
   - script: |
       python setup.py bdist_wheel
     displayName: 'build wheel'
-  - script: |
-      pip install numpy
-      pip install dist/*.whl
+  - task: PowerShell@2
+    inputs:
+      targetType: 'inline'
+      script: |
+        pip install numpy
+        pip install dist\*.whl
     displayName: 'intall test dependency'
     #- task: TwineAuthenticate@1
     #inputs:
