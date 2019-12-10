@@ -34,12 +34,12 @@ jobs:
       pip install .
     displayName: 'intall test dependency'
   - task: PublishPipelineArtifact@1
-    inputs:
+    #inputs:
       #targetPath: '$(Pipeline.Workspace)' 
       #artifactName: # 'drop'
   - task: TwineAuthenticate@0
     displayName: Configure twine authentication
-    inputs:
+    #inputs:
       #artifactFeeds: $(artifactFeed)
   - script: twine upload -r rigarash dist/*
     displayName: Publish artifacts
