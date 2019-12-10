@@ -34,7 +34,7 @@ jobs:
       targetType: 'inline'
       script: |
         pip install numpy
-        pip install dist\*.whl
+        pip install dist/*.whl
     displayName: 'intall test dependency'
     #- task: TwineAuthenticate@1
     #inputs:
