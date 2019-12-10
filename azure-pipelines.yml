@@ -37,7 +37,7 @@ jobs:
     inputs:
       artifactFeeds: 'rigarash'
     displayName: 'Configure twine authentication'
-  - script: twine upload -r rigarash/rigarash --config-file $(PYPIRC_PATH) dist/*
+  - script: twine upload -r rigarash --config-file $(PYPIRC_PATH) dist/*
     displayName: 'Publish project artifacts'
   - task: PowerShell@2
     inputs:
