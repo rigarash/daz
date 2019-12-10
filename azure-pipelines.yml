@@ -42,7 +42,7 @@ jobs:
   - task: PowerShell@2
     inputs:
       targetType: 'inline'
-  - script: |
+      script: |
         pip install daz pytest pytest-azurepipelines
         pytest
     displayName: 'pytest'
