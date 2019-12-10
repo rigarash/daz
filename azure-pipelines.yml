@@ -24,7 +24,7 @@ jobs:
       versionSpec: '$(python.version)'
     displayName: 'Use Python $(python.version)'
   - script: |
-      pip install --upgrade pip setuptools wheel
+      pip install --upgrade pip setuptools wheel twine
     displayName: 'Install dependencies'
   - script: |
       python setup.py bdist_wheel
@@ -33,6 +33,16 @@ jobs:
       pip install numpy
       pip install .
     displayName: 'intall test dependency'
+  - task: PublishPipelineArtifact@1
+    inputs:
+      #targetPath: '$(Pipeline.Workspace)' 
+      #artifactName: # 'drop'
+  - task: TwineAuthenticate@0
+    displayName: Configure twine authentication
+    inputs:
+      #artifactFeeds: $(artifactFeed)
+  - script: twine upload -r rigarash dist/*
+    displayName: Publish artifacts
   - task: PowerShell@2
     inputs:
       targetType: 'inline'
