@@ -34,19 +34,19 @@ jobs:
         pip install numpy
         pip install .
     displayName: 'build wheel'
-    #- task: TwineAuthenticate@1
-    #inputs:
-    #  artifactFeeds: 'rigarash'
-    #displayName: 'Configure twine authentication'
-    #- script: twine upload -r rigarash --config-file $(PYPIRC_PATH) dist/*
-    #displayName: 'Publish project artifacts'
-  - task: PowerShell@2
-    inputs:
-      targetType: 'inline'
-      script: |
-        pip install daz pytest pytest-azurepipelines
-        pytest
-    displayName: 'pytest'
+  # - task: TwineAuthenticate@1
+  #   inputs:
+  #    artifactFeeds: 'rigarash'
+  #   displayName: 'Configure twine authentication'
+  # - script: twine upload -r rigarash --config-file $(PYPIRC_PATH) dist/*
+  #   displayName: 'Publish project artifacts'
+  # - task: PowerShell@2
+  #   inputs:
+  #     targetType: 'inline'
+  #     script: |
+  #       pip install daz pytest pytest-azurepipelines
+  #       pytest
+  #   displayName: 'pytest'
   - task: PublishPipelineArtifact@1
     inputs:
       targetPath: '$(Pipeline.Workspace)/s/dist' 
