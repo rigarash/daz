@@ -33,16 +33,11 @@ jobs:
       pip install numpy
       pip install .
     displayName: 'intall test dependency'
-  - task: PublishPipelineArtifact@1
-    #inputs:
-      #targetPath: '$(Pipeline.Workspace)' 
-      #artifactName: # 'drop'
-    displayName: 'Publish build artifacts'
   - task: TwineAuthenticate@0
     inputs:
       artifactFeeds: 'rigarash'
     displayName: 'Configure twine authentication'
-  - script: twine upload -r rigarash --config-file $(PYPIRC_PATH) dist/*
+  - script: twine upload -r rigarash --config-file $(PYPIRC_PATH) dist/* --verbose
     displayName: 'Publish project artifacts'
   - task: PowerShell@2
     inputs:
@@ -51,3 +46,8 @@ jobs:
         pip install daz pytest pytest-azurepipelines
         pytest
     displayName: 'pytest'
+  - task: PublishPipelineArtifact@1
+    #inputs:
+      #targetPath: '$(Pipeline.Workspace)' 
+      #artifactName: # 'drop'
+    displayName: 'Publish build artifacts'
